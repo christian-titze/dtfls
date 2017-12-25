@@ -1,7 +1,7 @@
 export TERM="xterm-256color"
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+export HISTFILE=~/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=1000
 bindkey -v
 
 ### zplug begin ####
@@ -17,17 +17,35 @@ zplug "zsh-users/zsh-history-substring-search", defer:2 # MUST BE LOADED AFTER z
 
 zplug "sindresorhus/pure", use:pure.zsh, as:theme
 
+# Ask to install plugins if none installed yet.
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+
 zplug load --verbose
 
 ### zplug end ####
 
 # gimme search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+if zplug check zsh-users/zsh-history-substring-search; then
+  # macOS
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+  # Linux
+  bindkey '\eOA' history-substring-search-up
+  bindkey '\eOB' history-substring-search-down
+fi
 
 # gimme colors
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+if zplug check chriskempson/base16-shell; then
+  BASE16_SHELL=$HOME/.config/base16-shell/
+  [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+fi
 
 # aliases
 alias reload="source ~/.zshrc"
+alias la='ls -A'
+alias ll='ls -alF'
