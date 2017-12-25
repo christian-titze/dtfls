@@ -3,8 +3,6 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 bindkey -v
-autoload -Uz compinit
-compinit
 
 ### zplug begin ####
 
