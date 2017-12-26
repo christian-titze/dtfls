@@ -42,7 +42,7 @@ if [ "$(uname)" == "Linux" ]; then
           echo
           rm -rf ${DOTFILES}
         else
-          echo -e "\nInstallation aborted."
+          echo -e "\nInstallation aborted." >&2
           exit 1
         fi
       fi
