@@ -6,6 +6,12 @@ bindkey -v
 
 ### zplug begin ####
 
+# Check if zplug is installed
+if [[ ! -d ~/.zplug ]]; then
+  git clone https://github.com/zplug/zplug ~/.zplug
+  source ~/.zplug/init.zsh && zplug update --self
+fi
+
 source ~/.zplug/init.zsh
 
 zplug "mafredri/zsh-async"
@@ -17,11 +23,13 @@ zplug "zsh-users/zsh-history-substring-search", defer:2 # MUST BE LOADED AFTER z
 
 zplug "sindresorhus/pure", use:pure.zsh, as:theme
 
-# Ask to install plugins if none installed yet.
+# Install packages that have not been installed yet
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
   if read -q; then
     echo; zplug install
+  else
+    echo
   fi
 fi
 
