@@ -7,6 +7,42 @@ DOTFILES=${HOME}/.dotfiles
 # Check what system we're running on.
 if [ "$(uname)" == "Darwin" ]; then
   echo "Detected operating system: macOS"
+
+  # Check if homebrew is installed and install it if needed.
+  if [ ! -f "$(which brew)" ]; then
+    echo "Installing homebrew ..."
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+
+  echo "Installing packages ..."
+  brew install wget git python python3 cmake vim neovim tmux zsh
+  brew cask install iterm2 macvim
+  # Check if dotfiles dir already exists.
+  if [[ -d "${DOTFILES}" ]]; then
+    read -p "Directory ${DOTFILES} already exists, but is required to continue. Overwrite? [y/N] " -n 1 -r
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      echo
+      rm -rf ${DOTFILES}
+    else
+      echo -e "\nInstallation aborted." >&2
+      exit 1
+    fi
+  fi
+  
+  # Clone into dotfiles repo.
+  git clone https://github.com/christian-titze/dtfls ${DOTFILES}
+  
+  # Symlink all configuration files.
+  ln -isv ${DOTFILES}/zsh/.zshrc ${HOME}/.zshrc
+  
+  # Make zsh the default shell.
+  if [ ! -f "$(cat /etc/shells | grep '/usr/local/bin/zsh' | tail -1)" ]; then
+    sudo sh -c "echo $(which zsh) >> /etc/shells"
+  fi
+  echo "Please enter your password to make zsh your default shell."
+  chsh -s $(which zsh)
+  
+  echo "zsh setup complete. Please restart your terminal emulator to see changes."
 fi
 
 if [ "$(uname)" == "Linux" ]; then
