@@ -86,8 +86,19 @@ if [ "$(uname)" == "Linux" ]; then
       # Clone into dotfiles repo.
       git clone https://github.com/christian-titze/dtfls ${DOTFILES}
 
+      # Install vim-plug.
+      if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]; then
+      	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      fi
+
       # Symlink all configuration files.
+      ln -isv ${DOTFILES}/vim/.vimrc ${HOME}/.vim/vimrc
       ln -isv ${DOTFILES}/zsh/.zshrc ${HOME}/.zshrc
+
+      # Symlink vim configuration files for neovim.
+      ln -isv ${HOME}/.vim/vimrc ${HOME}/.config/nvim/init.vim
+      ln -isv ${HOME}/.vim/autoload/plug.vim ${HOME}/.local/share/nvim/site/autoload/plug.vim
+      ln -isv ${HOME}/.vim/plugged ${HOME}/.local/share/nvim/plugged
 
       # Make zsh the default shell.
       echo "Please enter your password to make zsh your default shell."
