@@ -36,6 +36,8 @@ if [ "$(uname)" == "Darwin" ]; then
   # Install vim-plug.
   if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]; then
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  else
+    echo "vim-plug is already installed."
   fi
 
   # Symlink all configuration files.
@@ -51,6 +53,7 @@ if [ "$(uname)" == "Darwin" ]; then
   ln -isv ${HOME}/.vim/plugged ${HOME}/.local/share/nvim/plugged
 
   # Install vim plugins automatically.
+  echo "Installing vim plugins ..."
   vim +PlugInstall +qall
 
   # Make zsh the default shell.
@@ -107,6 +110,8 @@ if [ "$(uname)" == "Linux" ]; then
       # Install vim-plug.
       if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]; then
       	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      else
+        echo "vim-plug is already installed."
       fi
 
       # Symlink all configuration files.
@@ -122,6 +127,7 @@ if [ "$(uname)" == "Linux" ]; then
       ln -isv ${HOME}/.vim/plugged ${HOME}/.local/share/nvim/plugged
 
       # Install vim plugins automatically.
+      echo "Installing vim plugins ..."
       vim +PlugInstall +qall
 
       # Make zsh the default shell.
