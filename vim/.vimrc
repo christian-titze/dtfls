@@ -126,9 +126,7 @@ nnoremap N Nzz
 " Clear highlighted search.
 noremap <space> :set hlsearch! hlsearch?<cr>
 
-" Navigate by display lines, not file lines.
-"noremap  <buffer> <silent> k gk
-"noremap  <buffer> <silent> j gj
+" Navigate by virtual lines, not physical lines.
 noremap  <buffer> <silent> 0 g0
 noremap  <buffer> <silent> $ g$
 " Navigate by physical lines when used with a count, otherwise use virtual lines.
