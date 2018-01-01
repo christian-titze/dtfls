@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# This script installs {zsh,tmux,vim,nvim} together with the specified plugins and configuration files  on a macOS or Ubuntu Linux system. 
+# This script installs {zsh,tmux,vim,nvim} together with the specified plugins and configuration files  on a macOS or Ubuntu Linux system.
 
-DOTFILES=${HOME}/.dotfiles
+DOTFILES="${HOME}/.dotfiles"
+REPO="https://github.com/christian-titze/dtfls"
 
 # Check what system we're running on.
 if [ "$(uname)" == "Darwin" ]; then
@@ -28,20 +29,37 @@ if [ "$(uname)" == "Darwin" ]; then
       exit 1
     fi
   fi
-  
+
   # Clone into dotfiles repo.
-  git clone https://github.com/christian-titze/dtfls ${DOTFILES}
-  
+  git clone ${REPO} ${DOTFILES}
+
+  # Install vim-plug.
+  if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  fi
+
   # Symlink all configuration files.
+  ln -isv ${DOTFILES}/vim/.vimrc ${HOME}/.vim/vimrc
   ln -isv ${DOTFILES}/zsh/.zshrc ${HOME}/.zshrc
-  
+
+  # Symlink vim configuration files for neovim.
+  mkdir -p ${HOME}/.config/nvim/
+  mkdir -p ${HOME}/.local/share/nvim/site/autoload/
+  mkdir -p ${HOME}/.local/share/nvim/plugged
+  ln -isv ${HOME}/.vim/vimrc ${HOME}/.config/nvim/init.vim
+  ln -isv ${HOME}/.vim/autoload/plug.vim ${HOME}/.local/share/nvim/site/autoload/plug.vim
+  ln -isv ${HOME}/.vim/plugged ${HOME}/.local/share/nvim/plugged
+
+  # Install vim plugins automatically.
+  vim +PlugInstall +qall
+
   # Make zsh the default shell.
   if [ ! -f "$(cat /etc/shells | grep '/usr/local/bin/zsh' | tail -1)" ]; then
     sudo sh -c "echo $(which zsh) >> /etc/shells"
   fi
   echo "Please enter your password to make zsh your default shell."
   chsh -s $(which zsh)
-  
+
   echo "zsh setup complete. Please restart your terminal emulator to see changes."
 fi
 
@@ -84,7 +102,7 @@ if [ "$(uname)" == "Linux" ]; then
       fi
 
       # Clone into dotfiles repo.
-      git clone https://github.com/christian-titze/dtfls ${DOTFILES}
+      git clone ${REPO} ${DOTFILES}
 
       # Install vim-plug.
       if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]; then
@@ -96,9 +114,15 @@ if [ "$(uname)" == "Linux" ]; then
       ln -isv ${DOTFILES}/zsh/.zshrc ${HOME}/.zshrc
 
       # Symlink vim configuration files for neovim.
+      mkdir -p ${HOME}/.config/nvim/
+      mkdir -p ${HOME}/.local/share/nvim/site/autoload/
+      mkdir -p ${HOME}/.local/share/nvim/plugged
       ln -isv ${HOME}/.vim/vimrc ${HOME}/.config/nvim/init.vim
       ln -isv ${HOME}/.vim/autoload/plug.vim ${HOME}/.local/share/nvim/site/autoload/plug.vim
       ln -isv ${HOME}/.vim/plugged ${HOME}/.local/share/nvim/plugged
+
+      # Install vim plugins automatically.
+      vim +PlugInstall +qall
 
       # Make zsh the default shell.
       echo "Please enter your password to make zsh your default shell."
@@ -107,9 +131,9 @@ if [ "$(uname)" == "Linux" ]; then
       echo "zsh setup complete. Please log out or reboot your machine now."
 
     else
-      echo "FAIL: Your Linux distribution is not supported. Installation aborted." >&2
+      echo "ERROR: Your Linux distribution is not supported. Installation aborted." >&2
     fi
   else
-    echo -e "FAIL: Could not determine Linux distribution. Installation aborted." >&2
+    echo -e "ERROR: Could not determine Linux distribution. Installation aborted." >&2
   fi
 fi
