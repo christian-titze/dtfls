@@ -14,12 +14,12 @@ Plug 'easymotion/vim-easymotion' " Vim motions on speed.
 Plug 'haya14busa/incsearch-easymotion.vim' " Integration between incsearch.vim and vim-easymotion.
 Plug 'haya14busa/incsearch.vim' " Improved incremental searching for vim.
 Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
-Plug 'junegunn/goyo.vim' " Distraction-free writing.
-Plug 'junegunn/rainbow_parentheses.vim' " Simpler rainbow parentheses.
+Plug 'junegunn/goyo.vim', { 'for': ['markdown', 'text'] } " Distraction-free writing.
+Plug 'junegunn/rainbow_parentheses.vim', { 'on': 'RainbowParentheses' } " Simpler rainbow parentheses.
 Plug 'mhinz/vim-signify' " Show a diff using Vim its sign column.
 Plug 'mhinz/vim-startify' " The fancy start screen for vim.
 Plug 'scrooloose/nerdcommenter' " Intensely orgasmic commenting.
-Plug 'scrooloose/nerdtree' " A tree explorer plugin for vim.
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " A tree explorer plugin for vim.
 Plug 'sickill/vim-pasta' " Context-aware pasting.
 Plug 'tpope/vim-sleuth' " Detect indent style (tabs vs. spaces).
 Plug 'tpope/vim-speeddating' " Use CTRL-A/CTRL-X to increment dates, times, and more.
@@ -139,9 +139,9 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " vim-airline
 "let g:airline_theme = 'base16'
 "let g:airline_powerline_fonts = 1 " Attention: Requires powerline fonts!
-let g:airline#extensions#tabline#enabled = 1 " show buffers at the top if only one tab is open
+"let g:airline#extensions#tabline#enabled = 1 " show buffers at the top if only one tab is open
 "let g:airline#extensions#tagbar#enabled = 0 " disable tagbar extension because of conditional loading of plugin
-let g:airline#extensions#wordcount#enabled = 1
+"let g:airline#extensions#wordcount#enabled = 1
 
 " EasyMotion
 map <Leader> <Plug>(easymotion-prefix)
