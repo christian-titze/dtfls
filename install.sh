@@ -18,6 +18,7 @@ if [ "$(uname)" == "Darwin" ]; then
   echo "Installing packages ..."
   brew install wget git python python3 cmake vim neovim tmux zsh
   brew cask install iterm2 macvim
+
   # Check if dotfiles dir already exists.
   if [[ -d "${DOTFILES}" ]]; then
     read -p "Directory ${DOTFILES} already exists, but is required to continue. Overwrite? [y/N] " -n 1 -r
