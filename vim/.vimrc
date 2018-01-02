@@ -57,9 +57,8 @@ set hidden " hide buffers instead of closing them (no need to save)
 set splitbelow " a new window is put below the current one
 set splitright " a new window is put right of the current one
 set title " show info in the terminal window title
-"set ttyfast " indicates a fast terminal connection to make redrawing smoother
+set ttyfast " indicates a fast terminal connection to make redrawing smoother
 set ruler " show cursor position below each window
-"set shortmess+=I " remove useless splash screen after start
 set showcmd " show incomplete commands in status line
 set showmode " display the current mode in the status line
 set confirm " start a dialog when a command fails
