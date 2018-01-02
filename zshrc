@@ -2,7 +2,6 @@ export TERM="xterm-256color"
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=1000
-bindkey -v
 
 ### zplug begin ####
 
