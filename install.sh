@@ -41,8 +41,8 @@ if [ "$(uname)" == "Darwin" ]; then
   fi
 
   # Symlink all configuration files.
-  ln -isv ${DOTFILES}/vim/.vimrc ${HOME}/.vim/vimrc
-  ln -isv ${DOTFILES}/zsh/.zshrc ${HOME}/.zshrc
+  ln -isv ${DOTFILES}/vimrc ${HOME}/.vim/vimrc
+  ln -isv ${DOTFILES}/zshrc ${HOME}/.zshrc
 
   # Symlink vim configuration files for neovim.
   mkdir -p ${HOME}/.config/nvim/
@@ -115,8 +115,8 @@ if [ "$(uname)" == "Linux" ]; then
       fi
 
       # Symlink all configuration files.
-      ln -isv ${DOTFILES}/vim/.vimrc ${HOME}/.vim/vimrc
-      ln -isv ${DOTFILES}/zsh/.zshrc ${HOME}/.zshrc
+      ln -isv ${DOTFILES}/vimrc ${HOME}/.vim/vimrc
+      ln -isv ${DOTFILES}/zshrc ${HOME}/.zshrc
 
       # Symlink vim configuration files for neovim.
       mkdir -p ${HOME}/.config/nvim/
