@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'bronson/vim-trailing-whitespace' " Highlights trailing whitespace in red and provides :FixWhitespace to fix it.
 Plug 'chriskempson/base16-vim' " Base16 for vim.
+Plug 'christoomey/vim-tmux-navigator' " Seamless navigation between tmux panes and vim splits.
 Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file, buffer, mru, tag, etc finder.
 Plug 'easymotion/vim-easymotion' " Vim motions on speed.
 Plug 'haya14busa/incsearch-easymotion.vim' " Integration between incsearch.vim and vim-easymotion.

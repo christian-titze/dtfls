@@ -16,7 +16,7 @@ if [ "$(uname)" == "Darwin" ]; then
   fi
 
   echo "Installing packages ..."
-  brew install wget git python python3 cmake vim neovim tmux zsh
+  brew install wget git python python3 cmake vim neovim tmux zsh reattach-to-user-namespace
   brew cask install iterm2 macvim
 
   # Check if dotfiles dir already exists.
@@ -44,6 +44,7 @@ if [ "$(uname)" == "Darwin" ]; then
   # Symlink all configuration files.
   ln -isv ${DOTFILES}/vimrc ${HOME}/.vim/vimrc
   ln -isv ${DOTFILES}/zshrc ${HOME}/.zshrc
+  ln -isv ${DOTFILES}/tmux.conf ${HOME}/.tmux.conf
 
   # Symlink vim configuration files for neovim.
   mkdir -p ${HOME}/.config/nvim/
@@ -91,7 +92,7 @@ if [ "$(uname)" == "Linux" ]; then
       sudo apt-get install -y python-dev python-pip python3-dev python3-pip
 
       # Install packages.
-      sudo apt-get install -y wget curl gawk cmake git zsh tmux vim neovim
+      sudo apt-get install -y wget curl gawk cmake git zsh tmux vim neovim xsel
 
       # Check if dotfiles dir already exists.
       if [[ -d "${DOTFILES}" ]]; then
@@ -118,6 +119,7 @@ if [ "$(uname)" == "Linux" ]; then
       # Symlink all configuration files.
       ln -isv ${DOTFILES}/vimrc ${HOME}/.vim/vimrc
       ln -isv ${DOTFILES}/zshrc ${HOME}/.zshrc
+      ln -isv ${DOTFILES}/tmux.conf ${HOME}/.tmux.conf
 
       # Symlink vim configuration files for neovim.
       mkdir -p ${HOME}/.config/nvim/
