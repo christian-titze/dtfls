@@ -6,6 +6,7 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+Plug 'bronson/vim-trailing-whitespace' " Highlights trailing whitespace in red and provides :FixWhitespace to fix it.
 Plug 'chriskempson/base16-vim' " Base16 for vim.
 Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file, buffer, mru, tag, etc finder.
 Plug 'easymotion/vim-easymotion' " Vim motions on speed.
