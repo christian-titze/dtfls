@@ -57,3 +57,6 @@ fi
 alias reload="source ~/.zshrc"
 alias la='ls -A'
 alias ll='ls -alF'
+alias vi='nvim'
+alias vim='nvim'
+alias vimdiff='nvim -d'
