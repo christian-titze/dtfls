@@ -24,6 +24,7 @@ Plug 'sickill/vim-pasta' " Context-aware pasting.
 Plug 'tpope/vim-sleuth' " Detect indent style (tabs vs. spaces).
 Plug 'tpope/vim-speeddating' " Use CTRL-A/CTRL-X to increment dates, times, and more.
 Plug 'tpope/vim-surround' " Quoting/parenthesizing made simple.
+Plug 'tpope/vim-unimpaired' " Pairs of handy bracket mappings.
 Plug 'vim-airline/vim-airline' " Lean & mean status/tabline that's light as air.
 Plug 'vim-airline/vim-airline-themes' " Collection of themes for vim-airline.
 Plug 'Xuyuanp/nerdtree-git-plugin' " A plugin of NERDTree showing git status.
@@ -139,7 +140,8 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " vim-airline
 "let g:airline_theme = 'base16'
 "let g:airline_powerline_fonts = 1 " Attention: Requires powerline fonts!
-"let g:airline#extensions#tabline#enabled = 1 " show buffers at the top if only one tab is open
+let g:airline#extensions#tabline#enabled = 1 " show buffers at the top if only one tab is open
+let g:airline#extensions#tabline#buffer_nr_show = 1 " show buffer numbers
 "let g:airline#extensions#tagbar#enabled = 0 " disable tagbar extension because of conditional loading of plugin
 "let g:airline#extensions#wordcount#enabled = 1
 
