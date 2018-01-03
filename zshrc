@@ -2,6 +2,7 @@ export TERM="xterm-256color"
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=1000
+export CLICOLOR=1 # Make output of tools like `ls` colored on macOS.
 
 ### zplug begin ####
 
@@ -32,7 +33,7 @@ if ! zplug check --verbose; then
   fi
 fi
 
-zplug load --verbose
+zplug load #--verbose
 
 ### zplug end ####
 
