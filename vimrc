@@ -133,6 +133,19 @@ noremap  <buffer> <silent> $ g$
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
+" Clear highlighted search.
+noremap <space> :set hlsearch! hlsearch?<cr>
+
+" Avoid ESC and use any 'jk' combination as a smash escape instead.
+inoremap jk <Esc>
+inoremap JK <Esc>
+inoremap Jk <Esc>
+inoremap jK <Esc>
+inoremap kj <Esc>
+inoremap KJ <Esc>
+inoremap Kj <Esc>
+inoremap kJ <Esc>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Plugin Settings                                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
