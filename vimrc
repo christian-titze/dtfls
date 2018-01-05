@@ -97,6 +97,11 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 if has('gui_running')
+  if has('gui_gtk2') " GNU/Linux
+    set guifont=Ubuntu Mono 12
+  else " macOS
+    set guifont=Monaco:h12
+  endif
 endif
 
 " Use ; as the leader key.
