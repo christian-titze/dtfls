@@ -1,6 +1,17 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              Plugin Management                               "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Check if vim-plug is installed.
+if !filereadable(expand("~/.vim/autoload/plug.vim"))
+  echo "vim-plug not installed"
+  if confirm("Install?", "&Yes\n&No", 2) == 1
+    echo "Installing vim-plug ..."
+    execute "! curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  else
+    echo "Skipping installation of vim-plug. You won't be able to use plugins."
+  endif
+endif
+
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
