@@ -26,6 +26,7 @@ git clone ${REPO} ${DOTFILES}
 
 # Symlink all configuration files.
 mkdir -p ${HOME}/.vim/
+ln -isv ${DOTFILES}/vimrc ${HOME}/.vimrc
 ln -isv ${DOTFILES}/vimrc ${HOME}/.vim/vimrc
 ln -isv ${DOTFILES}/zshrc ${HOME}/.zshrc
 ln -isv ${DOTFILES}/tmux.conf ${HOME}/.tmux.conf
