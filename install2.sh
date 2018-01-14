@@ -3,6 +3,12 @@
 DOTFILES="${HOME}/.dotfiles"
 REPO="https://github.com/christian-titze/dtfls"
 
+# Check if git is installed.
+if [! -x $(which git)]; then
+  echo -e "The program 'git' is currently not installed, but is required to continue.\nPlease install 'git' and run this script again."
+  exit 1
+fi
+
 # Check if dotfiles dir already exists.
 if [[ -d "${DOTFILES}" ]]; then
   read -p "Directory ${DOTFILES} already exists, but is required to continue. Overwrite? [y/N] " -n 1 -r
