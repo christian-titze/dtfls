@@ -4,7 +4,7 @@ DOTFILES="${HOME}/.dotfiles"
 REPO="https://github.com/christian-titze/dtfls"
 
 # Check if git is installed.
-if [! -x $(which git)]; then
+if [ ! -x $(which git)]; then
   echo -e "The program 'git' is currently not installed, but is required to continue.\nPlease install 'git' and run this script again."
   exit 1
 fi
