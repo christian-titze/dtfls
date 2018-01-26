@@ -130,6 +130,10 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfun
 
+" Easy way do disable removal of trailing whitespace.
+command! NoStripTrailingWhitespace let b:noStripWhitespace=1
+command! StripTrailingWhitespace let b:noStripWhitespace=0
+
 " Automatically remove trailing spaces on write.
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
