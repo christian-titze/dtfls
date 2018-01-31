@@ -118,9 +118,9 @@ endif
 " Use ; as the leader key.
 let mapleader = ';'
 
-" Saves the current cursor position, removes all trailing whitespaces, and returns to the saved cursor position.
-fun! <SID>StripTrailingWhitespaces()
-  " Only strip if the b:noStripWhitespace variable is not set.
+" Saves the current cursor position, removes all trailing whitespace, and returns to the saved cursor position.
+fun! <SID>StripTrailingWhitespace()
+  " Do not strip whitespace if the b:noStripWhitespace variable is set.
   if exists('b:noStripWhitespace')
     return
   endif
@@ -134,14 +134,17 @@ endfun
 command! NoStripTrailingWhitespace let b:noStripWhitespace=1
 command! StripTrailingWhitespace let b:noStripWhitespace=0
 
-" Automatically remove trailing spaces on write.
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+" Automatically remove trailing whitespace on write.
+autocmd BufWritePre * :call <SID>StripTrailingWhitespace()
 
 " Make the default filetype for every new file 'text'.
 autocmd BufEnter * if &filetype == "" | setlocal ft=text | endif
 
-" Do not strip trailing spaces in plain text files.
-autocmd FileType text,markdown let b:noStripWhitespace=1
+" Do not strip trailing whitespace in plain text files.
+autocmd FileType text,markdown,tex,plaintex,context let b:noStripWhitespace=1
+
+" Automatically activate spell checking for certain file types.
+autocmd FileType text,markdown,tex,plaintex,context setlocal spell spelllang=en_us
 
 " Type w!! if you forgot to sudo.
 cmap w!! w !sudo tee % >/dev/null
@@ -156,7 +159,7 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " Clear highlighted search.
 noremap <space> :set hlsearch! hlsearch?<cr>
 
-" Avoid ESC and use any 'jk' combination as a smash escape instead.
+" Avoid ESC and use any 'jk' combination as a "smash escape" instead.
 inoremap jk <Esc>
 inoremap JK <Esc>
 inoremap Jk <Esc>
