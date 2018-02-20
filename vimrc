@@ -89,6 +89,7 @@ set foldenable " enable folding
 set foldmethod=syntax " fold based on syntax
 set foldlevel=10 " folds with a level higher than this number will be closed
 set history=1000 " mucho mucho command history
+set wildmode=longest,list,full " preferences for command-line completion
 set wildmenu " command-line completion shows a list of matches
 
 if has('mouse')
