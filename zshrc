@@ -4,6 +4,11 @@ export HISTSIZE=1000
 export SAVEHIST=1000
 export CLICOLOR=1 # Make output of tools like `ls` colored on macOS.
 
+# Appends every command to the history file once it is executed
+setopt inc_append_history
+# Reloads the history whenever you use it
+setopt share_history
+
 ### zplug begin ####
 
 # Check if zplug is installed
