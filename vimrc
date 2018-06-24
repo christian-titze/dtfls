@@ -35,7 +35,8 @@ Plug 'tpope/vim-surround' " Quoting/parenthesizing made simple.
 Plug 'tpope/vim-unimpaired' " Pairs of handy bracket mappings.
 Plug 'vim-airline/vim-airline' " Lean & mean status/tabline that's light as air.
 Plug 'vim-airline/vim-airline-themes' " Collection of themes for vim-airline.
-Plug 'Yggdroot/indentLine' " Display the indention levels with thin vertical lines.
+" indentLine sets 'conceallevel', this will hide certain syntax elements and often make you go insane because you can't see what's wrong with your code. Do not use.
+"Plug 'Yggdroot/indentLine' " Display the indention levels with thin vertical lines.
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
